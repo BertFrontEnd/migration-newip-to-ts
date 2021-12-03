@@ -38,5 +38,6 @@
         "props": false
       }
     ]
+    /* "@typescript-eslint/no-explicit-any": "on" */
   }
 }
