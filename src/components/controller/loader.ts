@@ -2,6 +2,8 @@ type TypeGetResp = {
   sources: number;
 };
 
+type TypeCallback<T> = (data?: T) => void;
+
 interface InterfaceGetResp {
   endpoint: string;
   options?: TypeGetResp;
@@ -12,11 +14,6 @@ interface InterfaceResult {
   status: number;
   statusText: string | undefined;
   json(): void;
-}
-
-interface InterfaceLoad {
-  status: string;
-  sources: [];
 }
 
 class Loader {
@@ -59,14 +56,14 @@ class Loader {
     let url = `${this.baseLink}${endpoint}?`;
 
     Object.keys(urlOptions).forEach((key) => {
-      url += `${key}=${urlOptions[key]}&`;
+      url += `${key}=${urlOptions[key as keyof typeof urlOptions]}&`;
     });
 
     return url.slice(0, -1);
   }
 
   // eslint-disable-next-line max-len
-  load(method: string, endpoint: string, callback: { (data: InterfaceLoad): void }, options: TypeGetResp | undefined): void {
+  load(method: string, endpoint: string, callback: TypeCallback<JSON>, options: TypeGetResp | undefined): void {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
