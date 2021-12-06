@@ -1,12 +1,13 @@
 import './sources.css';
+import { Article } from '../../options';
 
 class Sources {
-  draw(data) {
+  draw(data: Article[]): void {
     const fragment = document.createDocumentFragment();
     const sourceItemTemp = document.querySelector('#sourceItemTemp');
 
-    data.forEach((item) => {
-      const sourceClone = sourceItemTemp.content.cloneNode(true);
+    data.forEach((item: Article) => {
+      const sourceClone = (sourceItemTemp as HTMLMetaElement).content.cloneNode(true);
 
       sourceClone.querySelector('.source__item-name').textContent = item.name;
       sourceClone

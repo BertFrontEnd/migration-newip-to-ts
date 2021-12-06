@@ -21,6 +21,27 @@ interface Result {
   json(): void;
 }
 
+type Text = {
+  author: string;
+  content: string;
+  description: string;
+  publishedAt: string;
+  source: { id: string, name: string };
+  title: string;
+  url: string;
+  urlToImage: string;
+};
+
+type Article = {
+  category: string;
+  country: string;
+  description: string;
+  id: string;
+  language: string;
+  name: string;
+  url: string;
+};
+
 type TypeCallback<T> = (data?: T) => void;
 
 type TypeGetResp = {
@@ -28,5 +49,5 @@ type TypeGetResp = {
 };
 
 export {
-  DataNews, DataSource, GetResp, Result, TypeCallback, TypeGetResp,
+  DataNews, DataSource, GetResp, Result, Article, Text, TypeCallback, TypeGetResp,
 };
