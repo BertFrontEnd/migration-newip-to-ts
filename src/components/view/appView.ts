@@ -1,16 +1,6 @@
 import News from './news/news';
 import Sources from './sources/sources';
-
-interface DataNews {
-  status: string;
-  totalResults: number;
-  articles: Array<Text>;
-}
-
-interface DataSource{
-  status: string;
-  sources: Array<Text>;
-}
+import { DataNews, DataSource } from '../options';
 
 export class AppView {
   news: News;
@@ -32,5 +22,3 @@ export class AppView {
     this.sources.draw(values);
   }
 }
-
-export default AppView;
