@@ -4,15 +4,16 @@ import { Article } from '../../options';
 class Sources {
   draw(data: Article[]): void {
     const fragment = document.createDocumentFragment();
-    const sourceItemTemp = document.querySelector('#sourceItemTemp');
+    const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 
     data.forEach((item: Article) => {
-      const sourceClone = (sourceItemTemp as HTMLMetaElement).content.cloneNode(true);
+      const sourceClone = sourceItemTemp.content.cloneNode(true) as Element;
 
-      sourceClone.querySelector('.source__item-name').textContent = item.name;
-      sourceClone
-        .querySelector('.source__item')
-        .setAttribute('data-source-id', item.id);
+      const sourceItemName = sourceClone.querySelector('.source__item-name') as HTMLElement;
+      sourceItemName.textContent = item.name;
+
+      const sourceItem = sourceClone.querySelector('.source__item') as HTMLElement;
+      sourceItem.setAttribute('data-source-id', item.id);
 
       fragment.append(sourceClone);
     });
