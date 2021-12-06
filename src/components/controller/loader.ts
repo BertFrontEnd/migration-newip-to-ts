@@ -1,20 +1,6 @@
-type TypeGetResp = {
-  sources: number;
-};
-
-type TypeCallback<T> = (data?: T) => void;
-
-interface InterfaceGetResp {
-  endpoint: string;
-  options?: TypeGetResp;
-}
-
-interface InterfaceResult {
-  ok: boolean;
-  status: number;
-  statusText: string | undefined;
-  json(): void;
-}
+import {
+  GetResp, Result, TypeGetResp, TypeCallback,
+} from '../options';
 
 class Loader {
   baseLink: string;
@@ -27,7 +13,7 @@ class Loader {
   }
 
   getResp(
-    { endpoint, options }: InterfaceGetResp,
+    { endpoint, options }: GetResp,
     callback = (): void => {
       // eslint-disable-next-line no-console
       console.error('No callback for GET response');
@@ -36,8 +22,7 @@ class Loader {
     this.load('GET', endpoint, callback, options);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  errorHandler(result: InterfaceResult): InterfaceResult {
+  errorHandler(result: Result): Result {
     if (!result.ok) {
       if (result.status === 401 || result.status === 404) {
         // eslint-disable-next-line no-console
@@ -62,12 +47,11 @@ class Loader {
     return url.slice(0, -1);
   }
 
-  // eslint-disable-next-line max-len
-  load(method: string, endpoint: string, callback: TypeCallback<JSON>, options: TypeGetResp | undefined): void {
+  load(method: string, endpoint: string, callback: TypeCallback<Response>, options: TypeGetResp | undefined): void {
     fetch(this.makeUrl(options, endpoint), { method })
       .then(this.errorHandler)
       .then((res) => res.json())
-      .then((data) => callback(data))
+      .then((data) => callback(data as unknown as Response))
       // eslint-disable-next-line no-console
       .catch((err) => console.error(err));
   }

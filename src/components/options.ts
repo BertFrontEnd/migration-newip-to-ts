@@ -9,4 +9,24 @@ interface DataSource{
   sources: Array<Text>;
 }
 
-export { DataNews, DataSource };
+interface GetResp {
+  endpoint: string;
+  options?: TypeGetResp;
+}
+
+interface Result {
+  ok: boolean;
+  status: number;
+  statusText: string | undefined;
+  json(): void;
+}
+
+type TypeCallback<T> = (data?: T) => void;
+
+type TypeGetResp = {
+  sources: string | null | number;
+};
+
+export {
+  DataNews, DataSource, GetResp, Result, TypeCallback, TypeGetResp,
+};

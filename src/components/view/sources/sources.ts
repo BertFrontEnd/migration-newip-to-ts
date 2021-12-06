@@ -16,7 +16,7 @@ class Sources {
       fragment.append(sourceClone);
     });
 
-    document.querySelector('.sources').append(fragment);
+    document.querySelector('.sources')?.append(fragment);
   }
 }
 
