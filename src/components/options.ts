@@ -5,20 +5,8 @@ interface DataNews {
 }
 
 interface DataSource{
-  status: string;
+  status?: string;
   sources: Array<Text>;
-}
-
-interface GetResp {
-  endpoint: string;
-  options?: TypeGetResp;
-}
-
-interface Result {
-  ok: boolean;
-  status: number;
-  statusText: string | undefined;
-  json(): void;
 }
 
 type Text = {
@@ -41,6 +29,17 @@ type Article = {
   name: string;
   url: string;
 };
+interface GetResp {
+  endpoint: string;
+  options?: TypeGetResp;
+}
+
+interface Result {
+  ok: boolean;
+  status: number;
+  statusText: string | undefined;
+  json(): void;
+}
 
 type TypeCallback<T> = (data?: T) => void;
 
@@ -49,5 +48,5 @@ type TypeGetResp = {
 };
 
 export {
-  DataNews, DataSource, GetResp, Result, Article, Text, TypeCallback, TypeGetResp,
+  DataNews, DataSource, Text, Article, GetResp, Result, TypeCallback, TypeGetResp,
 };
