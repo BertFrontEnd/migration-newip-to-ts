@@ -14,9 +14,10 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
     "class-methods-use-this": "off",
     "no-plusplus": "off",
-    "no-console": "warn",
+    "no-console": 0,
     "max-len": ["warn", { "code": 150 }],
     "indent": [
       "warn",
@@ -39,6 +40,5 @@
         "props": false
       }
     ]
-    /* "@typescript-eslint/no-explicit-any": "on" */
   }
 }
