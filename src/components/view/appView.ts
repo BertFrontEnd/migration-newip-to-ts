@@ -22,12 +22,6 @@ export class AppView {
   drawSources(data: DataSource): void {
     const sourcesValues = data?.sources ? data?.sources : [];
 
-
-
-
-
-
-
     this.sources.draw(sourcesValues);
   }
 }

@@ -6,7 +6,7 @@ interface DataNews {
 
 interface DataSource{
   status?: string;
-  sources: Array<Text>;
+  sources: Array<Article>;
 }
 
 type Text = {
